@@ -6,4 +6,7 @@
     <string name="no_hay_eventos_disponibles">No hay eventos disponibles</string>
     <string name="cargando">Cargando...</string>
     <string name="tipos_de_eventos">Tipos de eventos</string>
+    <string name="navigation_drawer_open">open</string>
+    <string name="navigation_drawer_close">closed</string>
+    <string name="perfil_de_usuario">Perfil de usuario</string>
 </resources>

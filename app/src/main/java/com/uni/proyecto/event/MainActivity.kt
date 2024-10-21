@@ -6,13 +6,16 @@ import android.graphics.drawable.AnimatedImageDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
@@ -28,6 +31,8 @@ class MainActivity : AppCompatActivity() {
     private var dialog: AlertDialog? = null
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var navController: NavController
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
-        val navController = findNavController(R.id.fragment_activity_main)
+        navController = findNavController(R.id.fragment_activity_main)
         navView.setupWithNavController(navController)
 
         drawerLayout = binding.container
@@ -46,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         navViewTwo.setNavigationItemSelectedListener { menuItem ->
             // Manejar clic en elementos del menú
             when (menuItem.itemId) {
-                R.id.nav_item_1 -> {
+                R.id.Perfil -> {
                     // Acciones para el Item 1
                 }
                 R.id.nav_item_2 -> {
@@ -61,28 +66,46 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        val appBarConfiguration = AppBarConfiguration(
-           setOf(
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
-            )
+            ),
+            drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-    }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_settings -> {
-                drawerLayout.openDrawer(GravityCompat.START)
-                true
+        val toggle = ActionBarDrawerToggle(
+            this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        )
+
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+        // Manejar clicks en el botón de la barra de herramientas
+        toggle.isDrawerIndicatorEnabled = true
+
+        drawerLayout.addDrawerListener(object : DrawerLayout.DrawerListener {
+            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
+                supportActionBar?.setDisplayHomeAsUpEnabled(false) // Mostrar el botón "Atrás" // Acción cuando se desliza el menú
             }
-            else -> super.onOptionsItemSelected(item)
-        }
+
+            override fun onDrawerOpened(drawerView: View) {
+
+            }
+
+            override fun onDrawerClosed(drawerView: View) {
+                supportActionBar?.setDisplayHomeAsUpEnabled(true) // Mostrar el botón "Atrás"
+            }
+
+            override fun onDrawerStateChanged(newState: Int) {
+                // Acción cuando cambia el estado del menú
+            }
+        })
+
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
 
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
