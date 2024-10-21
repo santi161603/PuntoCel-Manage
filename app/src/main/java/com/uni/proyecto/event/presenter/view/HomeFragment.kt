@@ -75,7 +75,6 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-
     }
 
     override fun onDestroyView() {
