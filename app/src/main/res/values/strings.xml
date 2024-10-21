@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Eventos Proyect</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">Inicio</string>
+    <string name="title_dashboard">Mis eventos</string>
+    <string name="title_notifications">Notificaciones</string>
     <string name="no_hay_eventos_disponibles">No hay eventos disponibles</string>
     <string name="cargando">Cargando...</string>
+    <string name="tipos_de_eventos">Tipos de eventos</string>
 </resources>

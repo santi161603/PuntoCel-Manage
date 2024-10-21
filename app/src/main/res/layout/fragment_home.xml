@@ -19,9 +19,9 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Tipos de eventos"
-        tools:textColor="@color/black"
-        tools:textStyle="bold" />
+        android:text="@string/tipos_de_eventos"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/emply"
