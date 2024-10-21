@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "500219510690",
+    "project_id": "event-1bea3",
+    "storage_bucket": "event-1bea3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500219510690:android:0c2c75b58b97c66095fcfb",
+        "android_client_info": {
+          "package_name": "com.uni.proyecto.event"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCXZyyXfI-Bkskvp24D-UJxAXGD3Y5D5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

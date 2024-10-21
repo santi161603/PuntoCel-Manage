@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">event</string>
+    <string name="app_name">Eventos Proyect</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="no_hay_eventos_disponibles">No hay eventos disponibles</string>
+    <string name="cargando">Cargando...</string>
 </resources>
