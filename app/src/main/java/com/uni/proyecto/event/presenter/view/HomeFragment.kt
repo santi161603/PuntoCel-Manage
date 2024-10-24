@@ -60,7 +60,7 @@ class HomeFragment : Fragment() {
         homeViewModel.uiModel.observe(viewLifecycleOwner){
             when(it){
                 HomeViewModel.UiModel.Loading -> {
-                    (requireActivity() as MainActivity).ShowLoadingAlert()
+                    (requireActivity() as MainActivity).showLoadingAlert()
                 }
                 HomeViewModel.UiModel.EventosNoObtenidos -> {
                     (requireActivity() as MainActivity).ShowAlert("No se encontraron eventos")

@@ -46,6 +46,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.firebase.auth.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -53,7 +54,9 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.picasso)
+    implementation (libs.androidx.datastore.preferences)
     implementation (libs.firebase.storage.ktx)
     implementation (libs.play.services.auth)
+    implementation (libs.androidx.core.splashscreen)
 
 }

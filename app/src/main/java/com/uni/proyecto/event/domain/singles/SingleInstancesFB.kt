@@ -1,5 +1,6 @@
 package com.uni.proyecto.event.domain.singles
 
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 object SingleInstancesFB {
@@ -7,4 +8,7 @@ object SingleInstancesFB {
         FirebaseFirestore.getInstance()
     }
 
+    val auth: FirebaseAuth by lazy {
+        FirebaseAuth.getInstance()
+    }
 }
