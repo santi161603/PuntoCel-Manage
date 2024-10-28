@@ -37,11 +37,17 @@ class AdapterHome(
 
         holder.miniDescription.text = evento.miniDescripcion
 
+        val imageUrl = evento.image
+
+        if (!imageUrl.isNullOrEmpty()) {
         Picasso.get()
             .load(evento.image)
             .placeholder(R.drawable.cargando) // Imagen de placeholder mientras carga
             .error(R.drawable.imagen_error) // Imagen de error si falla la carga
             .into(holder.image)
+        } else {
+            holder.image.setImageResource(R.drawable.imagen_error) // Imagen de marcador si `imageUrl` está vacío o es nulo
+        }
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
