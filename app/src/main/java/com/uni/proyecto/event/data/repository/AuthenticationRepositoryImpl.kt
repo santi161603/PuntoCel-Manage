@@ -8,4 +8,8 @@ class AuthenticationRepositoryImpl constructor(private val authenticationDataSou
     override suspend fun login(email: String, password: String): Result<Boolean> {
         return authenticationDataSource.login(email, password)
     }
+
+    override suspend fun registerUser(email: String, password: String): Result<Boolean> {
+        return authenticationDataSource.registerUser(email, password)
+    }
 }

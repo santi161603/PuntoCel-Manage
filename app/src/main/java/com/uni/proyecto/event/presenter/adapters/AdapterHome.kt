@@ -37,21 +37,20 @@ class AdapterHome(
 
         holder.miniDescription.text = evento.miniDescripcion
 
-        val imageUrl = evento.image
-
-        if (!imageUrl.isNullOrEmpty()) {
-        Picasso.get()
-            .load(evento.image)
-            .placeholder(R.drawable.cargando) // Imagen de placeholder mientras carga
-            .error(R.drawable.imagen_error) // Imagen de error si falla la carga
-            .into(holder.image)
+        if (!evento.image.isNullOrEmpty()) {
+            Picasso.get()
+                .load(evento.image)
+                .placeholder(R.drawable.cargando) // Imagen de placeholder mientras carga
+                .error(R.drawable.imagen_error) // Imagen de error si falla la carga
+                .into(holder.image)
         } else {
-            holder.image.setImageResource(R.drawable.imagen_error) // Imagen de marcador si `imageUrl` está vacío o es nulo
+            // Si el URL está vacío o es nulo, asigna directamente la imagen de error
+            holder.image.setImageResource(R.drawable.imagen_error)
         }
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val image = itemView.findViewById<ImageView>(R.id.image)
-        val miniDescription = itemView.findViewById<TextView>(R.id.text_description)
+        val image: ImageView = itemView.findViewById(R.id.image)
+        val miniDescription: TextView = itemView.findViewById(R.id.text_description)
     }
 }

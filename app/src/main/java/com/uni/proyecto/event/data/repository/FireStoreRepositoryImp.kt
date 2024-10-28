@@ -8,4 +8,5 @@ class FireStoreRepositoryImp constructor(private  val fireStoreDataSource: FireS
     override fun getEventos(onResult: (MutableList<TiposEvento>) -> Unit) {
         fireStoreDataSource.getEventos(onResult)
     }
+
 }

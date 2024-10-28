@@ -24,7 +24,9 @@ class AuthenticationDataSourceImpl constructor(private val firebaseAuth: Firebas
                             var errorMessage = ""
 
                             when (exception.errorCode) {
-                                "ERROR_INVALID_CREDENTIAL" ->  errorMessage = "Credenciales inválidas."
+                                "ERROR_INVALID_CREDENTIAL" -> errorMessage =
+                                    "Credenciales inválidas."
+
                                 "ERROR_USER_NOT_FOUND" -> errorMessage = "Usuario no encontrado."
                                 "ERROR_WRONG_PASSWORD" -> errorMessage = "Contraseña incorrecta."
 
@@ -54,11 +56,34 @@ class AuthenticationDataSourceImpl constructor(private val firebaseAuth: Firebas
         }
     }
 
+    override suspend fun registerUser(email: String, password: String): Result<Boolean> {
+        return suspendCancellableCoroutine { continuation ->
+            firebaseAuth.createUserWithEmailAndPassword(email, password)
+                .addOnSuccessListener {
+                    continuation.resume(Result.success(true)) // Registro exitoso
+                }
+                .addOnFailureListener { exception ->
+                    val errorMessage = when (exception) {
+                        is FirebaseAuthException -> {
+                            when (exception.errorCode) {
+                                "ERROR_EMAIL_ALREADY_IN_USE" -> "El correo electrónico ya está en uso."
+                                "ERROR_INVALID_EMAIL" -> "Formato de correo electrónico inválido."
+                                "ERROR_WEAK_PASSWORD" -> "La contraseña es demasiado débil. Debe tener al menos 6 caracteres."
+                                else -> "Error desconocido en el registro: ${exception.message}"
+                            }
+                        }
 
+                        is FirebaseNetworkException -> "Error de red. Verifique su conexión a Internet."
+                        else -> "Error desconocido en el registro: ${exception.message}"
+                    }
 
-    sealed class LoginResult {
-        object Success : LoginResult()
-        data class Failure(val message: String) : LoginResult()
+                    continuation.resume(Result.failure(AuthException(errorMessage)))
+                }
+
+            // Cancelar la operación de Firebase si el coroutine se cancela
+            continuation.invokeOnCancellation {
+                // Aquí puedes agregar lógica adicional si es necesario
+            }
+        }
     }
-
 }

@@ -1,180 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presenter.view.RegisterFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <!-- Título de la pantalla -->
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/registro"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
-
-    <!-- Campo Nombre -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilNombre"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/nombre"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
+        <!-- Título de la pantalla -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="32dp"
+            android:text="@string/registro"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Campo Apellidos -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilApellidos"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/apellidos"
-        app:layout_constraintTop_toBottomOf="@id/tilNombre"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
+        <!-- Campo Nombre -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilNombre"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/nombre"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle">
 
-    <!-- Campo Cedula -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilCedula"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/c_dula"
-        app:layout_constraintTop_toBottomOf="@id/tilApellidos"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nombreEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Campo Correo -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilCorreo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/correo"
-        app:layout_constraintTop_toBottomOf="@id/tilCedula"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
+        <!-- Campo Apellidos -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilApellidos"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:hint="@string/apellidos"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilNombre">
 
-    <!-- Campo Contraseña -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/contraseña"
-        app:layout_constraintTop_toBottomOf="@id/tilCorreo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/apellidosEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Campo Repetir Contraseña -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilRepetirPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/repetir_contrase_a"
-        app:layout_constraintTop_toBottomOf="@id/tilPassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
+        <!-- Campo Cedula -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilCedula"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:hint="@string/c_dula"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilApellidos">
 
-    <!-- Campo Celular -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilCelular"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/celular"
-        app:layout_constraintTop_toBottomOf="@id/tilRepetirPassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/cedulaEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Campo Correo -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilCorreo"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="phone"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:hint="@string/correo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilCedula">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Campo Contraseña -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:hint="@string/contraseña"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilCorreo">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Campo Repetir Contraseña -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilRepetirPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:hint="@string/repetir_contrase_a"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilPassword">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/repetirPasswordEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Campo Celular -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilCelular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:hint="@string/celular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilRepetirPassword">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/celularEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Campo Fecha de Nacimiento -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilFechaNacimiento"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/fecha_de_nacimiento"
-            app:layout_constraintTop_toBottomOf="@id/tilCelular"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="8dp"
+            android:hint="@string/fecha_de_nacimiento"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilCelular">
 
-            <TextView
-                android:id="@+id/tvFechaNacimiento"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etFechaNacimiento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:focusable="true"
-                android:text="@string/seleccionar_fecha"
-                android:padding="12dp"
-                android:background="@android:drawable/edit_text"
-                android:textColor="@android:color/black"/>
+                android:focusable="false" />
         </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Botón de Registro -->
-    <Button
-        android:id="@+id/btnRegistrar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/registrar"
-        app:layout_constraintTop_toBottomOf="@id/tilFechaNacimiento"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="16dp"/>
+        <!-- Botón de Registro -->
+        <Button
+            android:id="@+id/btnRegistrar"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
+            style="@style/RoundedButton"
+            android:text="@string/registrar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilFechaNacimiento" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
