@@ -14,3 +14,8 @@
 .cxx
 local.properties
 .idea/other.xml
+.idea/codeStyles/codeStyleConfig.xml
+.idea/codeStyles/Project.xml
+.idea/deploymentTargetSelector.xml
+.idea/gradle.xml
+.idea/other.xml
