@@ -8,25 +8,33 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.uni.proyecto.event.presenter.view.LoginFragment"
-        android:label="fragment_login"
+        android:label="@string/login_fragment"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_homeFragment3"
             app:destination="@id/homeFragment3" />
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment3"
         android:name="com.uni.proyecto.event.presenter.view.HomeFragment"
-        android:label="fragment_home"
+        android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/dashboardFragment2"
         android:name="com.uni.proyecto.event.presenter.view.DashboardFragment"
-        android:label="fragment_dashboard"
+        android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
     <fragment
         android:id="@+id/notificationsFragment2"
         android:name="com.uni.proyecto.event.presenter.view.NotificationsFragment"
-        android:label="fragment_notifications"
+        android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.uni.proyecto.event.presenter.view.RegisterFragment"
+        android:label="@string/register_fragment"
+        tools:layout="@layout/fragment_register" />
 </navigation>

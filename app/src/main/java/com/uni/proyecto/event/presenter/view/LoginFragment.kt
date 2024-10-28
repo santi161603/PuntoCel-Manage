@@ -37,7 +37,7 @@ class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
-    private val dataSource: AuthenticationDataSource = AuthenticationDataSourceImpl(auth, AuthException("") )
+    private val dataSource: AuthenticationDataSource = AuthenticationDataSourceImpl(auth)
     private val repository: AuthenticationRepository = AuthenticationRepositoryImpl(dataSource)
     private val loguinUseCase = LoginUseCase(repository)
     private lateinit var loginViewModel: LoginViewModel
@@ -63,8 +63,11 @@ class LoginFragment : Fragment() {
         loginViewModel = ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java]
 
         binding.loginButton.setOnClickListener {
-            binding.loginButton.isEnabled = false
             loginViewModel.login(binding.emailEditText.text.toString(), binding.passwordEditText.text.toString())
+        }
+
+        binding.registerButton.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
 
         observerConfig()
@@ -80,10 +83,13 @@ class LoginFragment : Fragment() {
         loginViewModel.uiModel.observe(viewLifecycleOwner) {
             when (it) {
                 LoginViewModel.UiModel.HideLoading -> {
-                    (requireActivity() as MainActivity).showLoadingAlert()
+                    (requireActivity() as MainActivity).dismissLoadingAlert()
                     binding.loginButton.isEnabled = true
                 }
-                LoginViewModel.UiModel.Loading -> (requireActivity() as MainActivity).dismissLoadingAlert()
+                LoginViewModel.UiModel.Loading -> {
+                    binding.loginButton.isEnabled = false
+                    (requireActivity() as MainActivity).showLoadingAlert()
+                }
 
                 is LoginViewModel.UiModel.LoginError -> {
                     (requireActivity() as MainActivity).ShowAlert(it.message)
@@ -100,6 +106,10 @@ class LoginFragment : Fragment() {
                 LoginViewModel.UiModel.SessionNull -> {
                     auth.signOut()
                     binding.loginFragment.visibility = View.VISIBLE
+                    (requireActivity() as MainActivity).hideSplashScreen()
+                }
+
+                LoginViewModel.UiModel.HideSplash -> {
                     (requireActivity() as MainActivity).hideSplashScreen()
                 }
             }

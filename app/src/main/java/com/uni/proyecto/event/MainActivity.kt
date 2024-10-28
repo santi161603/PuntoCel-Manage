@@ -93,14 +93,16 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             // Ocultar el BottomNavigationView cuando se navega a ciertos destinos
             when (destination.id) {
-                R.id.loginFragment, -> {
+                R.id.loginFragment, R.id.registerFragment -> {
                     navView.visibility = View.GONE
                     toggle.isDrawerIndicatorEnabled = false // Ocultar el botón para abrir el Drawer
+                    supportActionBar?.setDisplayHomeAsUpEnabled(false) // Asegúrate de ocultar la flecha de retroceso
                     drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED) // Opcional: bloquear el Drawer
                 }
                 else -> {
                     navView.visibility = View.VISIBLE
                     toggle.isDrawerIndicatorEnabled = true // Mostrar el botón para abrir el Drawer
+                    supportActionBar?.setDisplayHomeAsUpEnabled(true) // Asegúrate de ocultar la flecha de retroceso
                     drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED) // Asegúrate de desbloquear el Drawer
                 }
             }

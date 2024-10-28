@@ -28,14 +28,26 @@ class LoginViewModel constructor(private val loginUseCase: LoginUseCase, private
             _uiModel.value = UiModel.LoginError("Por favor ingrese todos los campos")
             return
         }
+        if(password.length < 6){
+            _uiModel.value = UiModel.HideLoading
+            _uiModel.value = UiModel.LoginError("La contraseña debe tener al menos 6 caracteres")
+            return
+        }
+        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            _uiModel.value = UiModel.HideLoading
+            _uiModel.value = UiModel.LoginError("El email no es valido")
+            return
+        }
 
         viewModelScope.launch (Dispatchers.Main) {
             val result = loginUseCase(email, password)
 
             if(result.isSuccess){
                 saveDataUser(email, password)
+                _uiModel.value = UiModel.HideLoading
                 _uiModel.value = UiModel.LoginSuccess
             }else{
+                _uiModel.value = UiModel.HideLoading
                 _uiModel.value = UiModel.LoginError( result.exceptionOrNull()?.message ?: "Error Desconocido")
             }
 
@@ -54,8 +66,10 @@ class LoginViewModel constructor(private val loginUseCase: LoginUseCase, private
             }.collect { (email, password) ->
                 if (!email.isNullOrEmpty() && !password.isNullOrEmpty()) {
                     _uiModel.value = UiModel.SessionSuccess
+                    _uiModel.value = UiModel.HideSplash
                 } else {
                     _uiModel.value = UiModel.SessionNull
+                    _uiModel.value = UiModel.HideSplash
                 }
             }
         }
@@ -74,6 +88,7 @@ class LoginViewModel constructor(private val loginUseCase: LoginUseCase, private
         object HideLoading: UiModel()
         object SessionSuccess : UiModel()
         object SessionNull : UiModel()
+        object HideSplash : UiModel()
     }
 }
 

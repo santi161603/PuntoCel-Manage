@@ -8,7 +8,7 @@ import com.uni.proyecto.event.domain.exceptions.AuthException
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 
-class AuthenticationDataSourceImpl constructor(private val firebaseAuth: FirebaseAuth, private val authException: AuthException) :
+class AuthenticationDataSourceImpl constructor(private val firebaseAuth: FirebaseAuth) :
     AuthenticationDataSource {
 
     override suspend fun login(email: String, password: String): Result<Boolean> {

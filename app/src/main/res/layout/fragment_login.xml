@@ -47,12 +47,24 @@
     <!-- Botón de inicio de sesión -->
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
+        style="@style/RoundedButton"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:text="@string/iniciar_sesi_n"
-        app:layout_constraintTop_toBottomOf="@id/passwordInputLayout"
+        app:layout_constraintEnd_toStartOf="@+id/registerButton"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/passwordInputLayout" />
+
+    <Button
+        android:id="@+id/registerButton"
+        style="@style/RoundedButton"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/registro"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp"/>
+        app:layout_constraintStart_toEndOf="@+id/loginButton"
+        app:layout_constraintTop_toBottomOf="@id/passwordInputLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
