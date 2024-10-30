@@ -1,6 +1,7 @@
 package com.uni.proyecto.event.presenter.adapters
 
 import android.content.Context
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +16,7 @@ import com.uni.proyecto.event.presenter.view.HomeFragment
 class AdapterHome(
     private val homeFragment: HomeFragment,
     private var typeEventosList: MutableList<TiposEvento>,
-    private val requireContext: Context
+    private val requireContext: Context,
 ): RecyclerView.Adapter<AdapterHome.ViewHolder>() {
 
     fun updateData(eventosList: MutableList<TiposEvento>) {
@@ -34,6 +35,8 @@ class AdapterHome(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val evento = typeEventosList[position]
+
+        holder.miniDescription.typeface = Typeface.SANS_SERIF
 
         holder.miniDescription.text = evento.miniDescripcion
 

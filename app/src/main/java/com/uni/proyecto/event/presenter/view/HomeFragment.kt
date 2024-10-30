@@ -4,12 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.ListenerRegistration
 import com.uni.proyecto.event.MainActivity
 import com.uni.proyecto.event.data.datasource.FireStoreDataSourceImp
@@ -50,6 +47,8 @@ class HomeFragment : Fragment() {
         binding.rvHome.layoutManager = layoutManager
         binding.rvHome.adapter = adapter
 
+        (requireActivity() as MainActivity).administrationSystem()
+
         homeViewModel.getTiposEventos()
 
         observerConfig()
@@ -63,7 +62,7 @@ class HomeFragment : Fragment() {
                     (requireActivity() as MainActivity).showLoadingAlert()
                 }
                 HomeViewModel.UiModel.EventosNoObtenidos -> {
-                    (requireActivity() as MainActivity).ShowAlert("No se encontraron eventos")
+                    (requireActivity() as MainActivity).showAlert("No se encontraron eventos")
                     binding.emply.visibility = View.VISIBLE
                 }
                 is HomeViewModel.UiModel.EventosObtenidos -> {

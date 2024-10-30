@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="1dp"
-        android:background="@color/colorOnPrimaryTarget">
+        android:background="@color/colorOnPrimary">
 
         <ImageView
             android:id="@+id/image"
@@ -31,8 +31,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            tools:background="@color/white"
+            tools:background="@color/colorOnPrimaryTarget"
             android:textAlignment="center"
+            android:textSize="13sp"
+            android:layout_marginHorizontal="2dp"
             android:textStyle="bold"
             tools:text="esta es una descripcion pequeña del evento"
             app:layout_constraintTop_toBottomOf="@+id/image"

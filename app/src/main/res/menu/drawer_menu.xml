@@ -5,9 +5,9 @@
         android:icon="@drawable/usuario"
         android:title="@string/perfil_de_usuario" />
     <item
-        android:id="@+id/nav_item_2"
-        android:icon="@drawable/cargando"
-        android:title="Item 2" />
+        android:id="@+id/gestionar_evento"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/gestion_de_eventos" />
     <item
         android:id="@+id/nav_item_3"
         android:icon="@drawable/cargando"

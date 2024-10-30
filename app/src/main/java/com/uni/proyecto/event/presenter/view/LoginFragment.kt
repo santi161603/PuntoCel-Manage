@@ -5,30 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.uni.proyecto.event.MainActivity
 import com.uni.proyecto.event.R
 import com.uni.proyecto.event.data.datasource.AuthenticationDataSourceImpl
-import com.uni.proyecto.event.data.datasource.FireStoreDataSourceImp
 import com.uni.proyecto.event.data.local.datastore.DataStoreManager
 import com.uni.proyecto.event.data.repository.AuthenticationRepositoryImpl
-import com.uni.proyecto.event.data.repository.FireStoreRepositoryImp
-import com.uni.proyecto.event.databinding.FragmentHomeBinding
 import com.uni.proyecto.event.databinding.FragmentLoginBinding
 import com.uni.proyecto.event.domain.datasource.AuthenticationDataSource
-import com.uni.proyecto.event.domain.datasource.FireStoreDataSource
-import com.uni.proyecto.event.domain.exceptions.AuthException
 import com.uni.proyecto.event.domain.repository.AuthenticationRepository
-import com.uni.proyecto.event.domain.repository.FireStoreRepository
 import com.uni.proyecto.event.domain.singles.SingleInstancesFB.auth
-import com.uni.proyecto.event.domain.singles.SingleInstancesFB.firestore
-import com.uni.proyecto.event.domain.usecase.GetEventosUseCase
 import com.uni.proyecto.event.domain.usecase.LoginUseCase
-import com.uni.proyecto.event.presenter.viewmodel.HomeViewModel
-import com.uni.proyecto.event.presenter.viewmodel.HomeViewModelFactory
 import com.uni.proyecto.event.presenter.viewmodel.LoginViewModel
 import com.uni.proyecto.event.presenter.viewmodel.LoginViewModelFactory
 
@@ -92,7 +81,7 @@ class LoginFragment : Fragment() {
                 }
 
                 is LoginViewModel.UiModel.LoginError -> {
-                    (requireActivity() as MainActivity).ShowAlert(it.message)
+                    (requireActivity() as MainActivity).showAlert(it.message)
                 }
                 LoginViewModel.UiModel.LoginSuccess, LoginViewModel.UiModel.SessionSuccess -> {
                     if (findNavController().currentDestination?.id != R.id.homeFragment3) {

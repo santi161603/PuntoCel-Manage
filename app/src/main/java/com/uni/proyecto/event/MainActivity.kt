@@ -1,15 +1,20 @@
 package com.uni.proyecto.event
 
 import android.app.AlertDialog
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.GravityCompat
+import android.Manifest
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -17,6 +22,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.uni.proyecto.event.databinding.ActivityMainBinding
+import com.uni.proyecto.event.domain.singles.SingleInstancesFB.auth
+import com.uni.proyecto.event.domain.singles.SingleInstancesFB.firestore
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     private var isSessionChecked = false
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private val storagePermissionRequestCode = 1001
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
@@ -59,6 +67,31 @@ class MainActivity : AppCompatActivity() {
         // Configurar el ActionBar con el NavController
         configurateActionBar(navView)
 
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+            != PackageManager.PERMISSION_GRANTED) {
+            // Si no se tiene el permiso, solicitarlo
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                storagePermissionRequestCode
+            )
+        }
+
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == storagePermissionRequestCode) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+            } else {
+
+            }
+        }
     }
 
     private fun configurateActionBar(navView: BottomNavigationView) {
@@ -99,6 +132,9 @@ class MainActivity : AppCompatActivity() {
                     supportActionBar?.setDisplayHomeAsUpEnabled(false) // Asegúrate de ocultar la flecha de retroceso
                     drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED) // Opcional: bloquear el Drawer
                 }
+                R.id.profileFragment, R.id.manageEventsFragment ->{
+                    navView.visibility = View.GONE
+                }
                 else -> {
                     navView.visibility = View.VISIBLE
                     toggle.isDrawerIndicatorEnabled = true // Mostrar el botón para abrir el Drawer
@@ -115,18 +151,41 @@ class MainActivity : AppCompatActivity() {
             // Manejar clic en elementos del menú
             when (menuItem.itemId) {
                 R.id.Perfil -> {
-                    // Acciones para el Item 1
+                    navController.navigate(R.id.profileFragment)
                 }
-                R.id.nav_item_2 -> {
-                    // Acciones para el Item 2
+                R.id.gestionar_evento -> {
+                   navController.navigate(R.id.manageEventsFragment)
                 }
                 R.id.nav_item_3 -> {
                     // Acciones para el Item 3
                 }
+
             }
             // Cerrar el drawer al seleccionar un item
             drawerLayout.closeDrawer(GravityCompat.START)
             true
+        }
+    }
+
+    fun administrationSystem() {
+
+        binding.navViewDra.menu.findItem(R.id.gestionar_evento).isVisible = false
+
+        val uid = auth.currentUser?.uid
+
+        uid?.let {
+            firestore.collection("Usuarios").document(it).get()
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+
+                        val typeUser = document.getString("tipoUsuario")
+
+                        if (typeUser == "Admin") {
+                            binding.navViewDra.menu.findItem(R.id.gestionar_evento).isVisible = true
+                        }
+
+                    }
+                }
         }
     }
 
@@ -135,7 +194,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun ShowAlert(mss: String,onClickResult: (() -> Unit)? = null) {
+    fun showAlert(mss: String, onClickResult: (() -> Unit)? = null) {
         val builder = AlertDialog.Builder(this)
         builder.setMessage(mss)
         builder.setCancelable(false)
@@ -171,5 +230,8 @@ class MainActivity : AppCompatActivity() {
 
     fun hideSplashScreen() {
         isSessionChecked = true
+    }
+    fun closeDraweLayout(){
+        drawerLayout.closeDrawer(GravityCompat.START)
     }
 }

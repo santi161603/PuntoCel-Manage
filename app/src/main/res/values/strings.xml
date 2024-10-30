@@ -27,4 +27,9 @@
     <string name="fecha_de_nacimiento">Fecha de Nacimiento</string>
     <string name="registrar">Registrar</string>
     <string name="seleccionar_fecha">Seleccionar Fecha</string>
+    <string name="gestion_de_eventos">Gestion de eventos</string>
+    <string name="cerrar_sesi_n">Cerrar sesión</string>
+    <string name="a_adir_imagen">Añadir Imagen</string>
+    <string name="crear_evento">Crear Evento</string>
+    <string name="ejemplo_string1_string2_string3">Ejemplo: String1,String2,String3</string>
 </resources>

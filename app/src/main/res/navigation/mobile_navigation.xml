@@ -37,4 +37,14 @@
         android:name="com.uni.proyecto.event.presenter.view.RegisterFragment"
         android:label="@string/register_fragment"
         tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.uni.proyecto.event.presenter.view.ProfileFragment"
+        android:label="Perfil de usuario"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/manageEventsFragment"
+        android:name="com.uni.proyecto.event.presenter.view.ManageEventsFragment"
+        android:label="Gestion de eventos"
+        tools:layout="@layout/fragment_manage_events" />
 </navigation>
