@@ -27,10 +27,10 @@ class HomeFragment : Fragment() {
     private var listenerRegistration: ListenerRegistration? = null
     private val adapter by lazy { AdapterHome(this, mutableListOf(), requireContext()) }
 
-    val dataSource: FireStoreDataSource = FireStoreDataSourceImp(firestore, listenerRegistration)
-    val repository: FireStoreRepository = FireStoreRepositoryImp(dataSource)
-    val getEventosUseCase: GetEventosUseCase = GetEventosUseCase(repository)
-    val viewModelFactory = HomeViewModelFactory(getEventosUseCase)
+    private val dataSource: FireStoreDataSource = FireStoreDataSourceImp(firestore, listenerRegistration)
+    private val repository: FireStoreRepository = FireStoreRepositoryImp(dataSource)
+    private val getEventosUseCase: GetEventosUseCase = GetEventosUseCase(repository)
+    private val viewModelFactory = HomeViewModelFactory(getEventosUseCase)
     private val homeViewModel: HomeViewModel by viewModels {
     viewModelFactory
     }
