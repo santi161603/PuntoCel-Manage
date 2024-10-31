@@ -84,6 +84,7 @@ class ManageEventsViewModel constructor(private val updateImageUseCase: UpdateIm
 
         viewModelScope.launch(Dispatchers.Main) {
             val result = addEventFirestoreUseCase.addEvent(evento, nombreEvento)
+
             if (result.isSuccess) {
                 _uiModel.value = UiModel.HideLoading
                 _uiModel.value = UiModel.EventoAnadido

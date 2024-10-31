@@ -79,7 +79,7 @@ class FireStoreDataSourceImp constructor(private val firestore: FirebaseFirestor
 
     override suspend fun addEvent(event: TiposEvento, name: String): Result<Boolean> {
         return suspendCancellableCoroutine { continuation ->
-            firestore.collection("Usuarios").document(name).set(event)
+            firestore.collection("TiposEventos").document(name).set(event)
                 .addOnSuccessListener {
                     continuation.resume(Result.success(true))
                 }
