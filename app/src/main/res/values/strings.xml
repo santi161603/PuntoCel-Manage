@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">Eventos Proyect</string>
-    <string name="title_home">Inicio</string>
-    <string name="title_dashboard">Mis eventos</string>
+    <string name="app_name">PuntoCel Manager</string>
+    <string name="title_home">Catalogo</string>
+    <string name="title_dashboard">desarrollo</string>
     <string name="title_notifications">Notificaciones</string>
-    <string name="no_hay_eventos_disponibles">No hay eventos disponibles</string>
+    <string name="no_hay_eventos_disponibles">No hay productos disponibles</string>
     <string name="cargando">Cargando...</string>
-    <string name="tipos_de_eventos">Tipos de eventos</string>
+    <string name="tipos_de_eventos">Tipos de Productos</string>
     <string name="navigation_drawer_open">open</string>
     <string name="navigation_drawer_close">closed</string>
     <string name="perfil_de_usuario">Perfil de usuario</string>
@@ -27,9 +27,9 @@
     <string name="fecha_de_nacimiento">Fecha de Nacimiento</string>
     <string name="registrar">Registrar</string>
     <string name="seleccionar_fecha">Seleccionar Fecha</string>
-    <string name="gestion_de_eventos">Gestion de eventos</string>
+    <string name="gestion_de_eventos">Gestion de inventario</string>
     <string name="cerrar_sesi_n">Cerrar sesión</string>
     <string name="a_adir_imagen">Añadir Imagen</string>
-    <string name="crear_evento">Crear Evento</string>
+    <string name="crear_evento">Crear Producto</string>
     <string name="ejemplo_string1_string2_string3">Ejemplo: String1,String2,String3</string>
 </resources>
