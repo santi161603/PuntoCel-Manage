@@ -11,6 +11,7 @@ import com.uni.proyecto.event.domain.usecase.GetEventosUseCase
 import com.uni.proyecto.event.domain.usecase.LoginUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -56,22 +57,17 @@ class LoginViewModel constructor(private val loginUseCase: LoginUseCase, private
     }
 
     fun validateUserData() {
-        viewModelScope.launch (Dispatchers.Main){
-            val email = dataStoreManager.email
-            val password = dataStoreManager.password
+        viewModelScope.launch(Dispatchers.Main) {
+            // Recoge el primer valor emitido por cada flow
+            val email = dataStoreManager.email.first()
+            val password = dataStoreManager.password.first()
 
-            // Combina ambos flujos
-            email.combine(password) { email, password ->
-                Pair(email, password)
-            }.collect { (email, password) ->
-                if (!email.isNullOrEmpty() && !password.isNullOrEmpty()) {
-                    _uiModel.value = UiModel.SessionSuccess
-                    _uiModel.value = UiModel.HideSplash
-                } else {
-                    _uiModel.value = UiModel.SessionNull
-                    _uiModel.value = UiModel.HideSplash
-                }
+            if (!email.isNullOrEmpty() && !password.isNullOrEmpty()) {
+                _uiModel.value = UiModel.SessionSuccess
+            } else {
+                _uiModel.value = UiModel.SessionNull
             }
+            _uiModel.value = UiModel.HideSplash
         }
     }
 
