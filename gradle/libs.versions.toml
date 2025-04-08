@@ -19,6 +19,7 @@ navigationUiKtx = "2.8.2"
 picasso = "2.71828"
 play-services-auth = "21.2.0"
 firebaseAuthKtx = "23.1.0"
+navSafeArgs = "2.6.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -46,4 +47,5 @@ firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx",
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 google-services = {id = "com.google.gms.google-services", version.ref = "google-services"}
+navigation-safeargs-kotlin = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navSafeArgs" }
 

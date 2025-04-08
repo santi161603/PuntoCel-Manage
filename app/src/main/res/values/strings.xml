@@ -32,4 +32,5 @@
     <string name="a_adir_imagen">Añadir Imagen</string>
     <string name="crear_evento">Crear Producto</string>
     <string name="ejemplo_string1_string2_string3">Ejemplo: String1,String2,String3</string>
+    <string name="descripcion_imagenes">esto es una descripcion general para las imagenes</string>
 </resources>

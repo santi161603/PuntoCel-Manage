@@ -21,7 +21,11 @@
         android:id="@+id/homeFragment3"
         android:name="com.uni.proyecto.event.presenter.view.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment3_to_detailsProductFragment"
+            app:destination="@id/detailsProductFragment" />
+    </fragment>
     <fragment
         android:id="@+id/dashboardFragment2"
         android:name="com.uni.proyecto.event.presenter.view.DashboardFragment"
@@ -45,6 +49,16 @@
     <fragment
         android:id="@+id/manageEventsFragment"
         android:name="com.uni.proyecto.event.presenter.view.ManageEventsFragment"
-        android:label="Gestion de eventos"
+        android:label="Gestion de productos"
         tools:layout="@layout/fragment_manage_events" />
+    <fragment
+        android:id="@+id/detailsProductFragment"
+        android:name="com.uni.proyecto.event.presenter.view.DetailsProductFragment"
+        android:label="Detalles de productos"
+        tools:layout="@layout/fragment_details_product">
+        <argument
+            android:name="eventName"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>

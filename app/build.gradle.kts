@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.services)
+    alias(libs.plugins.navigation.safeargs.kotlin)
 }
 
 android {
@@ -37,7 +38,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -58,5 +58,6 @@ dependencies {
     implementation (libs.firebase.storage.ktx)
     implementation (libs.play.services.auth)
     implementation (libs.androidx.core.splashscreen)
+
 
 }
